@@ -28,10 +28,9 @@ Pass test data for validating manually.
 Plot the predictions for visualization.
 
 ## PROGRAM
+### Developed by: J.Rithaniepriyanka
+### Register no.: 212220230039
 ```
-Developed by: U Bhavya
-Register no.: 212220230055
-
 from tensorflow import keras
 from tensorflow.keras import layers
 from tensorflow.keras import utils
@@ -61,15 +60,16 @@ for i in range(1, n + 1):
     ax.get_yaxis().set_visible(False)
 plt.show()
 input_img = keras.Input(shape=(28, 28, 1))
-
+```
 # Write your encoder here
+```
 x=layers.Conv2D(32,(3,3),activation='relu',padding='same')(input_img)
 x=layers.MaxPooling2D((2, 2), padding='same')(x)
 x=layers.Conv2D(32,(3,3),activation='relu',padding='same')(x)
 encoded = layers.MaxPooling2D((2, 2), padding='same')(x)
-
+```
 # Encoder output dimension is ## Mention the dimention ##
-
+```
 # Write your decoder here
 x=layers.Conv2D(32,(3,3),activation='relu',padding='same')(encoded)
 x=layers.UpSampling2D((2,2))(x)
@@ -91,23 +91,27 @@ metrics[['loss','val_loss']].plot()
 decoded_imgs = autoencoder.predict(x_test_noisy)
 n = 10
 plt.figure(figsize=(20, 4))
+```
+# Display original
+```
 for i in range(1, n + 1):
-    # Display original
     ax = plt.subplot(3, n, i)
     plt.imshow(x_test_scaled[i].reshape(28, 28))
     plt.gray()
     ax.get_xaxis().set_visible(False)
     ax.get_yaxis().set_visible(False)
-
-    # Display noisy
+```    
+# Display noisy
+ ```   
     ax = plt.subplot(3, n, i+n)
     plt.imshow(x_test_noisy[i].reshape(28, 28))
     plt.gray()
     ax.get_xaxis().set_visible(False)
     ax.get_yaxis().set_visible(False)    
-
-    # Display reconstruction
-    ax = plt.subplot(3, n, i + 2*n)
+```
+# Display reconstruction
+```   
+   ax = plt.subplot(3, n, i + 2*n)
     plt.imshow(decoded_imgs[i].reshape(28, 28))
     plt.gray()
     ax.get_xaxis().set_visible(False)
@@ -128,5 +132,4 @@ plt.show()
 
 ## RESULT
 Thus, a Convolutional Auto Encoder for Denoising was sucessfully implemented.
-
 
